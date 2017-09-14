@@ -186,7 +186,7 @@ function fillElementsForPeriod(fromDate, toDate)
 		});
 	}
 	displayTimelineAtDate(new Date(),false);
-	// CLICK PERIOD
+	// Calendar bookmark click
 	$('#calendar .month').click(function() {
 		// We get a string, we need a Date object.
 		var dateToScrollTo = $(this).attr('date');
