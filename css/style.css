@@ -1,0 +1,334 @@
+/* HTML */
+html, body, form, fieldset, div, p, ul, li {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+html {
+	overflow-y: scroll;
+}
+html.noscroll {
+	height: 100%;
+	overflow: hidden;
+}
+body {
+	width: 100%;
+	height: auto;
+	background: rgba(255,255,255,1);
+	color: rgba(0,0,0,.8);
+	overflow-x: hidden;
+	font: 12px/14px 'ProximaNovaAltSemiBold', Arial, sans-serif;
+	background-attachment: fixed;
+}
+h1, h2, h3, h4 {
+	font-weight: normal;
+	-webkit-margin-before: 2px;
+	-webkit-margin-after: 2px;
+	-webkit-margin-start: 2px;
+	-webkit-margin-end: 2px;
+}
+li {
+	margin: 0;
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+a:hover {
+}
+img {
+	border: 0;
+}
+.transition {
+	transition:	all 0.25s linear;
+	-webkit-transition: all 0.25s linear;
+	-moz-transition: all 0.25s linear;
+	-o-transition: all 0.25s linear;
+	-ms-transition:	all 0.25s linear;
+}
+
+/* TODAY */
+#today {
+	z-index: 2;
+	position: fixed;
+	width: 1px;
+	top: 200px;
+	height: 100%;
+	background: rgba(232,43,72,.5);
+}
+
+/* CURSOR */
+#cursor {
+	z-index: 2;
+	position: fixed;
+	width: 1px;
+	top: 200px;
+	height: 100%;
+	margin: 0px 0px 0px 10px;
+	background: rgba(0,0,0,.1);
+}
+
+/* CALENDAR */
+#calendar {
+	z-index: 6;
+	position: fixed;
+	width: 240px;
+	right: 20px;
+	bottom: -1px;
+	padding: 40px;
+	text-align: right;
+	background: rgba(255,255,255,1);
+	box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,.2);
+}
+#calendar .year {
+	font: 26px/30px 'ProximaNovaAltBlack', Arial, sans-serif;
+}
+#calendar .month {
+	float: none;
+	font: 14px/20px 'ProximaNovaAltBold', Arial, sans-serif;
+	cursor: pointer;
+}
+
+/* LEGEND */
+#legend {
+	z-index: 5;
+	position: fixed;
+	width: 100%;
+	left: 0px;
+	bottom: 0px;
+	padding: 20px 40px 20px 40px;
+	background: rgba(240,240,240,1);
+	border-top: 1px solid rgba(0,0,0,.1);
+}
+#legend #close {
+	position: absolute;
+	width: 20px;
+	top: 40px;
+	left: 20px;
+	background: rgba(255,255,255,1);
+	text-align: center;
+	font: 10px/20px 'ProximaNovaAltSemiBold', Arial, sans-serif;
+	box-shadow: 0px 0px 0px 1px rgba(0,0,0,.1);
+	border-radius: 100px;
+	cursor: pointer;
+	display: none;
+}
+#legend .float {
+	float: left;
+	margin: 0px 20px 20px 0px;
+}
+#legend .year {
+	font: 20px/30px 'ProximaNovaAltBlack', Arial, sans-serif;
+}
+#legend .filter {
+	float: left;
+	margin: 0px 10px 0px 0px;
+	color: rgba(0,0,0,.5);
+	font: 12px/16px 'ProximaNovaAltBold', Arial, sans-serif;
+	cursor: pointer;
+}
+#legend .filter.active {
+	color: rgb(232,43,72);
+}
+#legend .filter_project_all.active,
+#legend .filter_people_all.active,
+#legend .filter_metier_all.active {
+	 color: rgba(0,0,0,.8);
+}
+
+/* TITLE */
+#title {
+	z-index: 3;
+	position: fixed;
+	width: 100%;
+	margin: 0px 0px 0px 0px;
+	padding: 80px 0px 140px 300px;
+	background: rgba(255,255,255,1);
+	text-align: left;
+	text-transform: uppercase;
+	color: rgba(0,0,0,.95);
+	font: 30px/30px 'ProximaNovaAltBlack', Arial, sans-serif;
+}
+
+/* CONTAINER */
+#container {
+	width: 100% -;
+	margin: 260px 0px 100px 0px;
+}
+
+/* PERIODE */
+#period {
+	z-index: 4;
+	position: fixed;
+	width: 1000000px;
+	margin: -110px 0px 20px 300px;
+	background: rgba(255,255,255,1);
+}
+#period .month {
+	position: relative;
+}
+
+/* PROJECT */
+.project {
+	width: 280px;
+	margin: 0px 0px 40px 0px;
+}
+.project .title {
+	margin: 0px 20px 10px 0px;
+	text-transform: uppercase;
+	text-align: right;
+	font: 16px/20px 'ProximaNovaAltBlack', Arial, sans-serif;
+}
+.project .user {
+	width: 80%;
+	height: 40px;
+	margin: 0px 0px 2px 20%;
+	padding: 0px 20px;
+	font: 14px/40px 'ProximaNovaAltBold', Arial, sans-serif;
+	box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,.1);
+	border-radius: 2px;
+}
+.project .user .name {
+	position: absolute;
+	width: 180px;
+	text-align: right;
+	text-transform: uppercase;
+	color: rgba(0,0,0,.5);
+}
+.project .work_container {
+	position: absolute;
+	width: calc(100% - 300px);
+	height: 40px;
+	margin: 0px 0px 2px 225px;
+}
+.project .user .blocs {
+	width: 1000000px;
+}
+.project .user .blocs .date {
+	float: left;
+	position: relative;
+	width: 40px;
+	height: 40px;
+	margin: 0px 1px 0px 1px;
+	background: rgba(0,0,0,.05);
+}
+.project .user .work {
+	z-index: 1;
+	position: absolute;
+	height: 40px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 10px;
+	background: rgba(0,0,0,.5);
+	text-align: center;
+	text-transform: uppercase;
+	font: 12px/40px 'ProximaNovaAltBold', Arial, sans-serif;
+	box-sizing: border-box;
+	border-left: 1px solid rgba(255,255,255,1);
+	border-right: 1px solid rgba(255,255,255,1);
+	cursor: pointer;
+}
+.project .user .work span {
+	font: 12px/40px 'ProximaNovaAltThin', Arial, sans-serif;
+}
+.project .user .description {
+	z-index: 2;
+	position: fixed;
+	width: 400px;
+	height: auto;
+	left: 0px;
+	top: 0px;
+	padding: 40px;
+	background: rgba(255,255,255,1);
+	font: 16px/16px 'ProximaNovaAltSemiBold', Arial, sans-serif;
+	border-radius: 2px;
+	box-shadow: 0px 2px 8px -3px rgba(0,0,0,.3), 0px 0px 50px 0px rgba(0,0,0,.1);
+	box-sizing: border-box;
+	display: none;
+}
+.project .user .description .title {
+	margin: 0px 0px 0px 0px;
+	text-align: left;
+	font: 18px/18px 'ProximaNovaAltBlack', Arial, sans-serif;
+}
+.project .user .description .title span {
+	font: 16px/20px 'ProximaNovaAltThin', Arial, sans-serif;
+}
+.project .user .description .content {
+	text-align: left;
+	font: 14px/16px 'ProximaNovaAltSemiBold', Arial, sans-serif;
+}
+.project .user .description .content span {
+	font: 14px/16px 'ProximaNovaAltThin', Arial, sans-serif;
+}
+
+/* MONTH */
+.month {
+	width: auto;
+	float: left;
+}
+.month .title {
+	margin: 0px 0px 20px 0px;
+	font: 20px/30px 'ProximaNovaAltBlack', Arial, sans-serif;
+}
+.month .days .bloc,
+.month .date .bloc {
+	float: left;
+	width: 40px;
+	margin: 0px 1px 0px 1px;
+	text-align: center;
+	font: 10px/14px 'ProximaNovaAltSemiBold', Arial, sans-serif;
+}
+.month .days .bloc {
+	padding: 10px 0px 0px 0px;
+	color: rgba(0,0,0,.5);
+	border-top: 1px solid rgba(0,0,0,.1);
+}
+.month .date .bloc {
+	padding: 0px 0px 10px 0px;
+	color: rgba(0,0,0,.8);
+	font: 10px/14px 'ProximaNovaAltExtraBold', Arial, sans-serif;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.month .days .bloc.we,
+.month .date .bloc.we {
+	color: rgba(0,0,0,.3);
+}
+
+/* COLOR */
+.project .user .work.developpeur {
+	color: rgba(255,255,255,1);
+	background: rgb(86, 85, 101);
+}
+.project .user .work.design {
+	color: rgba(255,255,255,1);
+	background: rgb(214, 123, 151);
+}
+.project .user .work.holidays {
+	color: rgba(0,0,0,.8);
+	background: rgba(220,220,220,1);
+}
+
+/* SMALL */
+.small .project .user {
+	height: 20px;
+	font: 10px/20px 'ProximaNovaAltBold', Arial, sans-serif;
+	box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+}
+.small .project .work_container {
+	height: 20px;
+}
+.small .project .user .blocs .date {
+	width: 20px;
+	height: 20px;
+}
+.small .project .user .work {
+	height: 20px;
+	padding: 0px;
+	font: 8px/20px 'ProximaNovaAltSemiBold', Arial, sans-serif;
+}
+.small .month .days .bloc,
+.small .month .date .bloc {
+	width: 20px;
+	font: 8px/20px 'ProximaNovaAltSemiBold', Arial, sans-serif;
+}
