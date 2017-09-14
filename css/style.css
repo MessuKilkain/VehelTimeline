@@ -65,8 +65,9 @@ img {
 	width: 1px;
 	top: 200px;
 	height: 100%;
-	margin: 0px 0px 0px 10px;
+	margin: 0px 0px 0px 0px;
 	background: rgba(0,0,0,.1);
+	pointer-events: none;
 }
 
 /* CALENDAR */
