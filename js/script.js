@@ -1,6 +1,6 @@
 // Constants
 // hours*minutes*seconds*milliseconds
-var OneDayLengthInMilliseconds = 24*60*60*1000;
+var OneDayLengthInMilliseconds = 24*60*60*1000.0;
 var MonthFrenchNameArray = [ 
 	"Janvier",
 	"Février",
@@ -25,7 +25,20 @@ var DayOfWeekArray = [
 	"S",
 ];
 // Variables
-var Number = 0;
+var timelineConfig = {
+	fromDate: null,
+	toDate: null,
+	xStepPerBloc: 0,
+	offsetForDate: function(dateForExpectingOffset) {
+		var offset = 0;
+		if( null != this.fromDate && null != dateForExpectingOffset )
+		{
+			offset = ( dateForExpectingOffset.getTime() - this.fromDate.getTime() )/OneDayLengthInMilliseconds;
+			offset = offset * this.xStepPerBloc;
+		}
+		return offset;
+	}
+};
 var ThisRel = 0;
 var ThisDuration = 0;
 var ThisTeamate = 0;
@@ -58,19 +71,30 @@ function fillElementsForPeriod(fromDate, toDate)
 		fromDate = toDate;
 		toDate = fromDate;
 	}
+	timelineConfig.fromDate = fromDate;
+	timelineConfig.toDate = toDate;
 	{
 		var periodElement = $("#period");
 		periodElement.empty();
+		var calendarElement = $("#calendar");
+		calendarElement.empty();
+		var lastYear = null;
 		var lastMonthString = null;
 		var lastMonthDaysElement = null;
 		var lastMonthDateElement = null;
 		for (var d = new Date(fromDate); d <= toDate; d.setDate(d.getDate() + 1))
 		{
-			var currentMonthString = d.getFullYear()+'-'+(d.getMonth()+1);
-			console.log("currentMonthString : "+currentMonthString);
+			var currentYear = d.getFullYear();
+			var currentMonthString = currentYear+'-'+(d.getMonth()+1);
+			// console.log("currentMonthString : "+currentMonthString);
+			if( currentYear != lastYear )
+			{
+				calendarElement.append($('<div/>').addClass("year").text(currentYear));
+				lastYear = currentYear;
+			}
 			if( currentMonthString != lastMonthString )
 			{
-				// TODO : add the month to an array to populate the calendar shortcuts
+				calendarElement.append($('<div/>').addClass("month").text(MonthFrenchNameArray[d.getMonth()]).attr('date',d.toISOString()));
 				lastMonthDaysElement = null;
 				lastMonthDateElement = null;
 				
@@ -89,8 +113,8 @@ function fillElementsForPeriod(fromDate, toDate)
 					newDateElement.addClass('date');
 					lastMonthDateElement = newDateElement;
 				}
+				lastMonthString = currentMonthString;
 			}
-			lastMonthString = currentMonthString;
 			
 			if(null != lastMonthDaysElement)
 			{
@@ -143,13 +167,38 @@ function fillElementsForPeriod(fromDate, toDate)
 			// }
 		}
 	}
+	{
+		var blocs = $("#period .bloc");
+		var elt0 = blocs[0];
+		var elt1 = blocs[1];
+		timelineConfig.xStepPerBloc = $(elt1).position().left - $(elt0).position().left;
+		// console.log("timelineConfig.xStepPerBloc : "+timelineConfig.xStepPerBloc);
+	}
+	DisplayTimelineAtDate(new Date(),false);
+	// CLICK PERIOD
+	$('#calendar .month').click(function() {
+		// We get a string, we need a Date object.
+		var dateToScrollTo = $(this).attr('date');
+		// console.log("dateToScrollTo : "+dateToScrollTo);
+		DisplayTimelineAtDate(new Date(dateToScrollTo));
+	});
+}
+function DisplayTimelineAtDate(dateToDisplayTimelineAt,animated=true)
+{
+	var offset = timelineConfig.offsetForDate(dateToDisplayTimelineAt);
+	var timelineElementsToMove = $('#today, #period, .blocs, .work');
+	timelineElementsToMove.stop();
+	if(animated)
+	{
+		timelineElementsToMove.animate({ marginLeft: -offset });
+	} else {
+		timelineElementsToMove.css({ marginLeft: -offset });
+	}
 }
 function Blocs() {
 	// CREATE BLOC
 	$('.blocs').empty();
 	$('#period .days .bloc').each(function(){
-		Number++
-		//$('.blocs').append('<div class="date">'+Number+'</div>');
 		$('.blocs').append('<div class="date"></div>');
 	});
 }
@@ -163,30 +212,14 @@ function Work() {
 		This.css({ width: Size*Duration+(2*Duration), left: Size*(Start-1)+(2*(Start-1))+(TheMonth*Size+TheMonth*2) });
 	});
 }
-function Click() {
-	// CLICK PERIOD
-	$('#calendar .month').click(function() {
-		var Defil = $(this).attr('duration');
-		if ($(this).hasClass('first')) {
-			$('#today').stop().animate({ marginLeft: 0 });
-			$('#period').stop().animate({ marginLeft: 300 });
-			$('.blocs, .work').stop().animate({ marginLeft: 0 });
-		} else {
-			$('#today').stop().animate({ marginLeft: -(Defil*Size + Defil*2)+340 });
-			$('#period').stop().animate({ marginLeft: -(Defil*Size + Defil*2)+340 });
-			$('.blocs, .work').stop().animate({ marginLeft: -((Defil-1)*Size + (Defil-1)*2) });
-		}
-	});
-}
 function Today() {
-	$('#today').css({ left: (TodayIs-1)*Size+((TodayIs-1)*2)+301 });
+	$('#today').css({ left: timelineConfig.offsetForDate(new Date())+$('#period').position().left });
 }
 
 $(document).ready(function() {
 	fillElementsForPeriod();
 	Blocs();
 	Work();
-	Click();
 	Today();
 
 /*
@@ -197,9 +230,9 @@ $(document).ready(function() {
 		case 39:
 			$('body').addClass('small');
 			Size = 20;
+			fillElementsForPeriod();
 			Blocs();
 			Work();
-			Click();
 			Today();
 		}
 		// LEFT ARROW
@@ -207,9 +240,9 @@ $(document).ready(function() {
 		case 37:
 			$('body').removeClass('small');
 			Size = 40;
+			fillElementsForPeriod();
 			Work();
 			Blocs();
-			Click();
 			Today();
 		}
 	});
