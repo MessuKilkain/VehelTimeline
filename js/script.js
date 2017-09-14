@@ -91,10 +91,12 @@ function fillElementsForPeriod(fromDate, toDate)
 				}
 			}
 			lastMonthString = currentMonthString;
+			
 			if(null != lastMonthDaysElement)
 			{
+				var parentElement = lastMonthDaysElement;
 				var newDayElement = $('<div/>');
-				lastMonthDaysElement.append(newDayElement);
+				parentElement.append(newDayElement);
 				newDayElement.addClass('bloc').text(DayOfWeekArray[d.getDay()]);
 				if(
 					// S
@@ -108,8 +110,9 @@ function fillElementsForPeriod(fromDate, toDate)
 			}
 			if(null != lastMonthDateElement)
 			{
+				var parentElement = lastMonthDateElement;
 				var newDateElement = $('<div/>');
-				lastMonthDateElement.append(newDateElement);
+				parentElement.append(newDateElement);
 				newDateElement.addClass('bloc').text(d.getDate());
 				if(
 					// S
@@ -121,6 +124,23 @@ function fillElementsForPeriod(fromDate, toDate)
 					newDateElement.addClass('we');
 				}
 			}
+			
+			// if(null != lastMonthDaysElement)
+			// {
+				// var parentElement = lastMonthDaysElement;
+				// var newDayElement = $('<div/>');
+				// parentElement.append(newDayElement);
+				// newDayElement.addClass('bloc').html(DayOfWeekArray[d.getDay()]+"<br/>"+d.getDate());
+				// if(
+					// // S
+					// d.getDay() == 6
+					// // D
+					// || d.getDay() == 0
+					// )
+				// {
+					// newDayElement.addClass('we');
+				// }
+			// }
 		}
 	}
 }
