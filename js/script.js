@@ -131,6 +131,10 @@ function fillElementsForPeriod(fromDate, toDate)
 				{
 					newDayElement.addClass('we');
 				}
+				newDayElement.attr('date',d.toISOString());
+				newDayElement.click(function(){
+					displayTimelineAtDate(new Date($(this).attr('date')));
+				});
 			}
 			if(null != lastMonthDateElement)
 			{
@@ -147,6 +151,10 @@ function fillElementsForPeriod(fromDate, toDate)
 				{
 					newDateElement.addClass('we');
 				}
+				newDateElement.attr('date',d.toISOString());
+				newDateElement.click(function(){
+					displayTimelineAtDate(new Date($(this).attr('date')));
+				});
 			}
 			
 			// if(null != lastMonthDaysElement)
