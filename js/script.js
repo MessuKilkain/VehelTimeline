@@ -48,6 +48,77 @@ function initializePeriod(fromDate, toDate)
 	}
 	// console.log("fromDate : "+fromDate.toISOString());
 	// console.log("toDate : "+toDate.toISOString());
+	if(fromDate>toDate)
+	{
+		// WARNING : unexpected case
+		var temp = fromDate;
+		fromDate = toDate;
+		toDate = fromDate;
+	}
+	{
+		var periodElement = $("#period");
+		periodElement.empty();
+		var lastMonthString = null;
+		var lastMonthDaysElement = null;
+		var lastMonthDateElement = null;
+		for (var d = new Date(fromDate); d <= toDate; d.setDate(d.getDate() + 1))
+		{
+			var currentMonthString = d.getFullYear()+'-'+(d.getMonth()+1);
+			console.log("currentMonthString : "+currentMonthString);
+			if( currentMonthString != lastMonthString )
+			{
+				lastMonthDaysElement = null;
+				lastMonthDateElement = null;
+				
+				var newMonthElement = $('<div/>');
+				periodElement.append(newMonthElement);
+				newMonthElement.addClass('month').append("<div class='title'>"+MonthFrenchNameArray[d.getMonth()]+" "+d.getFullYear()+"</div>");
+				{
+					var newDaysElement = $('<div/>');
+					newMonthElement.append(newDaysElement);
+					newDaysElement.addClass('days');
+					lastMonthDaysElement = newDaysElement;
+				}
+				{
+					var newDateElement = $('<div/>');
+					newMonthElement.append(newDateElement);
+					newDateElement.addClass('date');
+					lastMonthDateElement = newDateElement;
+				}
+			}
+			lastMonthString = currentMonthString;
+			if(null != lastMonthDaysElement)
+			{
+				var newDayElement = $('<div/>');
+				lastMonthDaysElement.append(newDayElement);
+				newDayElement.addClass('bloc').text(DayOfWeekArray[d.getDay()]);
+				if(
+					// S
+					d.getDay() == 6
+					// D
+					|| d.getDay() == 0
+					)
+				{
+					newDayElement.addClass('we');
+				}
+			}
+			if(null != lastMonthDateElement)
+			{
+				var newDateElement = $('<div/>');
+				lastMonthDateElement.append(newDateElement);
+				newDateElement.addClass('bloc').text(d.getDate());
+				if(
+					// S
+					d.getDay() == 6
+					// D
+					|| d.getDay() == 0
+					)
+				{
+					newDateElement.addClass('we');
+				}
+			}
+		}
+	}
 }
 function Blocs() {
 	// CREATE BLOC
