@@ -1,7 +1,29 @@
 // VARIABLE
-var Month = 0; var Duration = 0;
-var Start = 0;
-var Number = 0; var ThisRel = 0;
+var MonthFrenchNameArray = [ 
+	"Janvier",
+	"Février",
+	"Mars",
+	"Avril",
+	"Mai",
+	"Juin",
+	"Juillet",
+	"Août",
+	"Septembre",
+	"Octobre",
+	"Novembre",
+	"Décembre"
+];
+var DayOfWeekArray = [
+	"D",
+	"L",
+	"M",
+	"M",
+	"J",
+	"V",
+	"S",
+];
+var Number = 0;
+var ThisRel = 0;
 var ThisDuration = 0;
 var ThisTeamate = 0;
 var ThisProject = 0;
@@ -40,9 +62,9 @@ function Work() {
 	$('.work').each(function(){
 		// CREATE WORK
 		var This = $(this);
-		TheMonth = This.attr('month');
-		Duration = This.attr('duration');
-		Start = This.attr('start');
+		var TheMonth = This.attr('month');
+		var Duration = This.attr('duration');
+		var Start = This.attr('start');
 		This.css({ width: Size*Duration+(2*Duration), left: Size*(Start-1)+(2*(Start-1))+(TheMonth*Size+TheMonth*2) });
 	});
 }
