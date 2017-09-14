@@ -174,16 +174,16 @@ function fillElementsForPeriod(fromDate, toDate)
 		timelineConfig.xStepPerBloc = $(elt1).position().left - $(elt0).position().left;
 		// console.log("timelineConfig.xStepPerBloc : "+timelineConfig.xStepPerBloc);
 	}
-	DisplayTimelineAtDate(new Date(),false);
+	displayTimelineAtDate(new Date(),false);
 	// CLICK PERIOD
 	$('#calendar .month').click(function() {
 		// We get a string, we need a Date object.
 		var dateToScrollTo = $(this).attr('date');
 		// console.log("dateToScrollTo : "+dateToScrollTo);
-		DisplayTimelineAtDate(new Date(dateToScrollTo));
+		displayTimelineAtDate(new Date(dateToScrollTo));
 	});
 }
-function DisplayTimelineAtDate(dateToDisplayTimelineAt,animated=true)
+function displayTimelineAtDate(dateToDisplayTimelineAt,animated=true)
 {
 	var offset = timelineConfig.offsetForDate(dateToDisplayTimelineAt);
 	var timelineElementsToMove = $('#today, #period, .blocs, .work');
