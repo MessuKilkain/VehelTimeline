@@ -1,4 +1,6 @@
-// VARIABLE
+// Constants
+// hours*minutes*seconds*milliseconds
+var OneDayLengthInMilliseconds = 24*60*60*1000;
 var MonthFrenchNameArray = [ 
 	"Janvier",
 	"Février",
@@ -22,13 +24,14 @@ var DayOfWeekArray = [
 	"V",
 	"S",
 ];
+// Variables
 var Number = 0;
 var ThisRel = 0;
 var ThisDuration = 0;
 var ThisTeamate = 0;
 var ThisProject = 0;
 var TodayIs = 13; var Size = 40;
-function initializePeriod(fromDate, toDate)
+function fillElementsForPeriod(fromDate, toDate)
 {
 	if(!fromDate)
 	{
@@ -67,6 +70,7 @@ function initializePeriod(fromDate, toDate)
 			console.log("currentMonthString : "+currentMonthString);
 			if( currentMonthString != lastMonthString )
 			{
+				// TODO : add the month to an array to populate the calendar shortcuts
 				lastMonthDaysElement = null;
 				lastMonthDateElement = null;
 				
@@ -159,7 +163,7 @@ function Today() {
 }
 
 $(document).ready(function() {
-	initializePeriod();
+	fillElementsForPeriod();
 	Blocs();
 	Work();
 	Click();
