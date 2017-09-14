@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Projects</title>
+
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<script src="js/jquery-latest.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+
+</head>
+<body>
+
+<!-- CALENDAR -->
+<div id="calendar">
+	<div class="year">2017</div>
+	<div class="month first" duration="0">Septembre</div>
+	<div class="month" duration="31">Octobre</div>
+	<div class="month" duration="62">Novembre</div>
+	<div class="month" duration="92">Décembre</div>
+</div>
+
+<!-- LEGEND -->
+<div id="legend">
+	<div id="close">x</div>
+	<div class="float">
+		<div class="year">Projets</div>
+		<div class="filter filter_project_all active">Tous</div>
+		<div class="filter filter_project" rel="project_projet_a">Projet A</div>
+		<div class="filter filter_project" rel="project_projet_b">Projet B</div>
+		<div class="filter filter_project" rel="project_conges">Congés</div>
+	</div>
+	<div class="float">
+		<div class="year">Team</div>
+		<div class="filter filter_people_all active">Tous</div>
+		<div class="filter filter_people" rel="resource_individu_1">Individu 1</div>
+		<div class="filter filter_people" rel="resource_individu_2">Individu 2</div>
+	</div>
+	<div class="float">
+		<div class="year">Métier</div>
+		<div class="filter filter_metier_all active">Tous</div>
+		<div class="filter filter_metier" rel="design">Design</div>
+		<div class="filter filter_metier" rel="developpeur">Développement</div>
+	</div>
+</div>
+
+<div id="title">Projects</div>
+<!--DATES -->
+<div id="container">
+	<div id="today"></div>
+	<div id="cursor"></div>
+	<div id="period">
+		<div class="month" month="septembre">
+			<div class="title">Septembre 2017</div>
+			<div class="days">
+				<div class="bloc">V</div>
+				<div class="bloc we">S</div>
+				<div class="bloc we">D</div>
+				<div class="bloc">L</div>
+				<div class="bloc">M</div>
+				<div class="bloc">M</div>
+				<div class="bloc">J</div>
+				<div class="bloc">V</div>
+				<div class="bloc we">S</div>
+				<div class="bloc we">D</div>
+				<div class="bloc">L</div>
+				<div class="bloc">M</div>
+				<div class="bloc">M</div>
+				<div class="bloc">J</div>
+				<div class="bloc">V</div>
+				<div class="bloc we">S</div>
+				<div class="bloc we">D</div>
+				<div class="bloc">L</div>
+				<div class="bloc">M</div>
+				<div class="bloc">M</div>
+				<div class="bloc">J</div>
+				<div class="bloc">V</div>
+				<div class="bloc we">S</div>
+				<div class="bloc we">D</div>
+				<div class="bloc">L</div>
+				<div class="bloc">M</div>
+				<div class="bloc">M</div>
+				<div class="bloc">J</div>
+				<div class="bloc">V</div>
+				<div class="bloc we">S</div>
+			</div>
+			<div class="date">
+				<div class="bloc">1</div>
+				<div class="bloc we">2</div>
+				<div class="bloc we">3</div>
+				<div class="bloc">4</div>
+				<div class="bloc">5</div>
+				<div class="bloc">6</div>
+				<div class="bloc">7</div>
+				<div class="bloc">8</div>
+				<div class="bloc we">9</div>
+				<div class="bloc we">10</div>
+				<div class="bloc">11</div>
+				<div class="bloc">12</div>
+				<div class="bloc">13</div>
+				<div class="bloc">14</div>
+				<div class="bloc">15</div>
+				<div class="bloc we">16</div>
+				<div class="bloc we">17</div>
+				<div class="bloc">18</div>
+				<div class="bloc">19</div>
+				<div class="bloc">20</div>
+				<div class="bloc">21</div>
+				<div class="bloc">22</div>
+				<div class="bloc we">23</div>
+				<div class="bloc we">24</div>
+				<div class="bloc">25</div>
+				<div class="bloc">26</div>
+				<div class="bloc">27</div>
+				<div class="bloc">28</div>
+				<div class="bloc">29</div>
+				<div class="bloc we">30</div>
+			</div>
+		</div>
+		<div class="month" month="octobre">
+			<div class="title">Octobre 2017</div>
+			<div class="days">
+				<div class="bloc we">D</div>
+				<div class="bloc">L</div>
+				<div class="bloc">M</div>
+				<div class="bloc">M</div>
+				<div class="bloc">J</div>
+				<div class="bloc">V</div>
+				<div class="bloc we">S</div>
+				<div class="bloc we">D</div>
+				<div class="bloc">L</div>
+				<div class="bloc">M</div>
+				<div class="bloc">M</div>
+				<div class="bloc">J</div>
+				<div class="bloc">V</div>
+				<div class="bloc we">S</div>
+				<div class="bloc we">D</div>
+				<div class="bloc">L</div>
+				<div class="bloc">M</div>
+				<div class="bloc">M</div>
+				<div class="bloc">J</div>
+				<div class="bloc">V</div>
+				<div class="bloc we">S</div>
+				<div class="bloc we">D</div>
+				<div class="bloc">L</div>
+				<div class="bloc">M</div>
+				<div class="bloc">M</div>
+				<div class="bloc">J</div>
+				<div class="bloc">V</div>
+				<div class="bloc we">S</div>
+				<div class="bloc we">D</div>
+				<div class="bloc">L</div>
+				<div class="bloc">M</div>
+			</div>
+			<div class="date">
+				<div class="bloc we">1</div>
+				<div class="bloc">2</div>
+				<div class="bloc">3</div>
+				<div class="bloc">4</div>
+				<div class="bloc">5</div>
+				<div class="bloc">6</div>
+				<div class="bloc we">7</div>
+				<div class="bloc we">8</div>
+				<div class="bloc">9</div>
+				<div class="bloc">10</div>
+				<div class="bloc">11</div>
+				<div class="bloc">12</div>
+				<div class="bloc">13</div>
+				<div class="bloc we">14</div>
+				<div class="bloc we">15</div>
+				<div class="bloc">16</div>
+				<div class="bloc">17</div>
+				<div class="bloc">18</div>
+				<div class="bloc">19</div>
+				<div class="bloc">20</div>
+				<div class="bloc we">21</div>
+				<div class="bloc we">22</div>
+				<div class="bloc">23</div>
+				<div class="bloc">24</div>
+				<div class="bloc">25</div>
+				<div class="bloc">26</div>
+				<div class="bloc">27</div>
+				<div class="bloc we">28</div>
+				<div class="bloc we">29</div>
+				<div class="bloc">30</div>
+				<div class="bloc">31</div>
+			</div>
+		</div>
+		<div class="month" month="novembre">
+			<div class="title">Novembre 2017</div>
+			<div class="days">
+				<div class="bloc">M</div>
+				<div class="bloc">J</div>
+				<div class="bloc">V</div>
+				<div class="bloc we">S</div>
+				<div class="bloc we">D</div>
+				<div class="bloc">L</div>
+				<div class="bloc">M</div>
+				<div class="bloc">M</div>
+				<div class="bloc">J</div>
+				<div class="bloc">V</div>
+				<div class="bloc we">S</div>
+				<div class="bloc we">D</div>
+				<div class="bloc">L</div>
+				<div class="bloc">M</div>
+				<div class="bloc">M</div>
+				<div class="bloc">J</div>
+				<div class="bloc">V</div>
+				<div class="bloc we">S</div>
+				<div class="bloc we">D</div>
+				<div class="bloc">L</div>
+				<div class="bloc">M</div>
+				<div class="bloc">M</div>
+				<div class="bloc">J</div>
+				<div class="bloc">V</div>
+				<div class="bloc we">S</div>
+				<div class="bloc we">D</div>
+				<div class="bloc">L</div>
+				<div class="bloc">M</div>
+				<div class="bloc">M</div>
+				<div class="bloc">J</div>
+			</div>
+			<div class="date">
+				<div class="bloc">1</div>
+				<div class="bloc">2</div>
+				<div class="bloc">3</div>
+				<div class="bloc we">4</div>
+				<div class="bloc we">5</div>
+				<div class="bloc">6</div>
+				<div class="bloc">7</div>
+				<div class="bloc">8</div>
+				<div class="bloc">9</div>
+				<div class="bloc">10</div>
+				<div class="bloc we">11</div>
+				<div class="bloc we">12</div>
+				<div class="bloc">13</div>
+				<div class="bloc">14</div>
+				<div class="bloc">15</div>
+				<div class="bloc">16</div>
+				<div class="bloc">17</div>
+				<div class="bloc we">18</div>
+				<div class="bloc we">19</div>
+				<div class="bloc">20</div>
+				<div class="bloc">21</div>
+				<div class="bloc">22</div>
+				<div class="bloc">23</div>
+				<div class="bloc">24</div>
+				<div class="bloc we">25</div>
+				<div class="bloc we">26</div>
+				<div class="bloc">27</div>
+				<div class="bloc">28</div>
+				<div class="bloc">29</div>
+				<div class="bloc">30</div>
+			</div>
+		</div>
+		<div class="month" month="decembre">
+			<div class="title">Décembre 2017</div>
+			<div class="days">
+				<div class="bloc">V</div>
+				<div class="bloc we">S</div>
+				<div class="bloc we">D</div>
+				<div class="bloc">L</div>
+				<div class="bloc">M</div>
+				<div class="bloc">M</div>
+				<div class="bloc">J</div>
+				<div class="bloc">V</div>
+				<div class="bloc we">S</div>
+				<div class="bloc we">D</div>
+				<div class="bloc">L</div>
+				<div class="bloc">M</div>
+				<div class="bloc">M</div>
+				<div class="bloc">J</div>
+				<div class="bloc">V</div>
+				<div class="bloc we">S</div>
+				<div class="bloc we">D</div>
+				<div class="bloc">L</div>
+				<div class="bloc">M</div>
+				<div class="bloc">M</div>
+				<div class="bloc">J</div>
+				<div class="bloc">V</div>
+				<div class="bloc we">S</div>
+				<div class="bloc we">D</div>
+				<div class="bloc we">L</div>
+				<div class="bloc">M</div>
+				<div class="bloc">M</div>
+				<div class="bloc">J</div>
+				<div class="bloc">V</div>
+				<div class="bloc we">S</div>
+				<div class="bloc we">D</div>
+			</div>
+			<div class="date">
+				<div class="bloc">1</div>
+				<div class="bloc we">2</div>
+				<div class="bloc we">3</div>
+				<div class="bloc">4</div>
+				<div class="bloc">5</div>
+				<div class="bloc">6</div>
+				<div class="bloc">7</div>
+				<div class="bloc">8</div>
+				<div class="bloc we">9</div>
+				<div class="bloc we">10</div>
+				<div class="bloc">11</div>
+				<div class="bloc">12</div>
+				<div class="bloc">13</div>
+				<div class="bloc">14</div>
+				<div class="bloc">15</div>
+				<div class="bloc we">16</div>
+				<div class="bloc we">17</div>
+				<div class="bloc">18</div>
+				<div class="bloc">19</div>
+				<div class="bloc">20</div>
+				<div class="bloc">21</div>
+				<div class="bloc">22</div>
+				<div class="bloc we">23</div>
+				<div class="bloc we">24</div>
+				<div class="bloc we">25</div>
+				<div class="bloc">26</div>
+				<div class="bloc">27</div>
+				<div class="bloc">28</div>
+				<div class="bloc">29</div>
+				<div class="bloc we">30</div>
+				<div class="bloc we">31</div>
+			</div>
+		</div>
+	</div>
+	<!-- Projet A -->
+	<div class="project project_projet_a">
+		<div class="title">Projet A</div>
+		<div class="user resource_individu_1">
+			<div class="name project_projet_a">Individu 1</div>
+			<div class="work_container">
+				<div class="work project_projet_a" month="0" duration="1" start="17" rel="un">x</div>
+				<div class="description un">
+					<div class="title">Event 1</div>
+					<div class="content">Dimanche, 21h.</div>
+				</div>
+				<div class="work project_projet_a" month="0" duration="1" start="27" rel="deux">x</div>
+				<div class="description deux">
+					<div class="title">Event 2</div>
+					<div class="content">Mercredi, 21h.</div>
+				</div>
+				<div class="work project_projet_a" month="0" duration="1" start="30" rel="trois">x</div>
+				<div class="description trois">
+					<div class="title">Event 3</div>
+					<div class="content">Samedi, 17h.</div>
+				</div>
+				<div class="blocs"></div>
+			</div>
+		</div>
+	</div>
+	<!-- Projet B -->
+	<div class="project project_projet_b">
+		<div class="title">Projet B</div>
+		<div class="user resource_individu_1">
+			<div class="name design">Individu 1</div>
+			<div class="work_container">
+				<div class="work design" month="0" duration="12" start="4" rel="un">Maquette<span></span></div>
+				<div class="description un">
+					<div class="title">Website<br/><span></span><br/><br/></div>
+					<div class="content">Design de la maquette du site web.</div>
+				</div>
+				<div class="blocs"></div>
+			</div>
+		</div>
+		<div class="user resource_individu_2">
+			<div class="name developpeur">Individu 2</div>
+			<div class="work_container">
+				<div class="work developpeur" month="0" duration="8" start="6" rel="un">Update Application mobile</div>
+				<div class="description un">
+					<div class="title">Application mobile<br/><span></span><br/><br/></div>
+					<div class="content">Mise à jour de l'application.</div>
+				</div>
+				<div class="blocs"></div>
+			</div>
+		</div>
+	</div>
+	<!-- CONGES -->
+	<div class="project project_conges">
+		<div class="title">Congés</div>
+		<div class="user resource_individu_2">
+			<div class="name">Individu 2</div>
+			<div class="work_container">
+				<div class="work holidays" month="0" duration="18" start="23" rel="un">CP</div>
+				<div class="description un">
+					<div class="title">Congés<br/><span></span><br/><br/></div>
+					<div class="content">18 jours, du 23 septembre au 10 octobre inclus.</div>
+				</div>
+				<div class="blocs"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
