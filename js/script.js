@@ -181,6 +181,9 @@ function fillElementsForPeriod(fromDate, toDate)
 		var elt1 = blocs[1];
 		timelineConfig.xStepPerBloc = $(elt1).position().left - $(elt0).position().left;
 		// console.log("timelineConfig.xStepPerBloc : "+timelineConfig.xStepPerBloc);
+		$('#period').css({
+			minWidth: timelineConfig.offsetForDate(timelineConfig.toDate) + timelineConfig.xStepPerBloc
+		});
 	}
 	displayTimelineAtDate(new Date(),false);
 	// CLICK PERIOD
