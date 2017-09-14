@@ -202,7 +202,7 @@ function Blocs() {
 		$('.blocs').append('<div class="date"></div>');
 	});
 }
-function Work() {
+function oldWorkFunction() {
 	$('.work').each(function(){
 		// CREATE WORK
 		var This = $(this);
@@ -212,14 +212,40 @@ function Work() {
 		This.css({ width: Size*Duration+(2*Duration), left: Size*(Start-1)+(2*(Start-1))+(TheMonth*Size+TheMonth*2) });
 	});
 }
+function setupWorkDisplay() {
+	$('.work').each(function(){
+		// CREATE WORK
+		var el = $(this);
+		var startDate = el.attr('start-date');
+		var duration = el.attr('expected-duration');
+		el.css({ width: duration * timelineConfig.xStepPerBloc, left: timelineConfig.offsetForDate(new Date(startDate)) });
+	});
+}
 function Today() {
 	$('#today').css({ left: timelineConfig.offsetForDate(new Date())+$('#period').position().left });
+}
+function convertOldFormatFromStartDate(startDate=null)
+{
+	$('.work').each(function(index,element){
+		var el = $(element);
+		var newStartDate = new Date('2017-09-01');
+		if( null != startDate )
+		{
+			newStartDate = new Date(startDate);
+		}
+		newStartDate.setMonth(newStartDate.getMonth());
+		newStartDate.setMonth(newStartDate.getMonth()+parseInt(el.attr('month')));
+		newStartDate.setDate(newStartDate.getDate()+parseInt(el.attr('start')));
+		el.attr('start-date',newStartDate.toISOString());
+		el.attr('expected-duration',el.attr('duration'));
+	});
+	setupWorkDisplay();
 }
 
 $(document).ready(function() {
 	fillElementsForPeriod();
 	Blocs();
-	Work();
+	setupWorkDisplay();
 	Today();
 
 /*
@@ -232,7 +258,7 @@ $(document).ready(function() {
 			Size = 20;
 			fillElementsForPeriod();
 			Blocs();
-			Work();
+			setupWorkDisplay();
 			Today();
 		}
 		// LEFT ARROW
@@ -241,7 +267,7 @@ $(document).ready(function() {
 			$('body').removeClass('small');
 			Size = 40;
 			fillElementsForPeriod();
-			Work();
+			setupWorkDisplay();
 			Blocs();
 			Today();
 		}
