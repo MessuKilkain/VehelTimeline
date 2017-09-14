@@ -6,6 +6,27 @@ var ThisDuration = 0;
 var ThisTeamate = 0;
 var ThisProject = 0;
 var TodayIs = 13; var Size = 40;
+function initializePeriod(fromDate, toDate)
+{
+	if(!fromDate)
+	{
+		fromDate = new Date();
+		// Set to first day of the month
+		fromDate.setDate(1);
+		fromDate.setMonth(fromDate.getMonth()-2);
+	}
+	if(!toDate)
+	{
+		toDate = new Date();
+		// Set to first day of the month
+		toDate.setDate(1);
+		toDate.setMonth(toDate.getMonth()+4+1);
+		// Set to last day of the month
+		toDate.setDate(0);
+	}
+	// console.log("fromDate : "+fromDate.toISOString());
+	// console.log("toDate : "+toDate.toISOString());
+}
 function Blocs() {
 	// CREATE BLOC
 	$('.blocs').empty();
@@ -45,6 +66,7 @@ function Today() {
 }
 
 $(document).ready(function() {
+	initializePeriod();
 	Blocs();
 	Work();
 	Click();
