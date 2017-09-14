@@ -247,6 +247,13 @@ $(document).ready(function() {
 	Blocs();
 	setupWorkDisplay();
 	Today();
+	
+	// DEBUG
+	{
+		var currentMonthDate = new Date();
+		currentMonthDate.setDate(1);
+		convertOldFormatFromStartDate(currentMonthDate);
+	}
 
 /*
 	// SMALL
