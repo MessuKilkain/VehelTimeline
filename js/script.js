@@ -274,7 +274,7 @@ $(document).ready(function() {
 	// DEBUG
 	{
 		var currentMonthDate = new Date();
-		currentMonthDate = new Date(currentMonthDate.getFullYear()+'-'+currentMonthDate.getMonth()+'-01');
+		currentMonthDate = new Date(currentMonthDate.getFullYear()+'-'+(currentMonthDate.getMonth()+1)+'-01');
 		convertOldFormatFromStartDate(currentMonthDate);
 	}
 
