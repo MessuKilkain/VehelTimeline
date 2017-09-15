@@ -39,6 +39,7 @@ var timelineConfig = {
 		return offset;
 	}
 };
+var ThisRel = null;
 var Size = 40;
 function fillElementsForPeriod(fromDate, toDate)
 {
@@ -330,7 +331,7 @@ $(document).ready(function() {
 
 	// HOVER ON WORK
 	$('.work').hover(function(event){
-		var ThisRel = $(this).attr('rel');
+		ThisRel = $(this).attr('rel');
 		var ThisDuration = $(this).attr('duration');
 		var NoLimit = $(this).attr('nolimit');
 		var ThisTeamate = $(this).parent().parent().find('.name').text();
