@@ -41,12 +41,15 @@ var timelineConfig = {
 };
 var ThisRel = null;
 var Size = 40;
+function getDateWithoutTime(dateWithTime=new Date())
+{
+	return new Date(dateWithTime.getFullYear()+'-'+(dateWithTime.getMonth()+1)+'-'+dateWithTime.getDate());;
+}
 function fillElementsForPeriod(fromDate, toDate)
 {
 	if(!fromDate)
 	{
-		fromDate = new Date();
-		fromDate = new Date(fromDate.getFullYear()+'-'+fromDate.getMonth()+'-'+fromDate.getDate());
+		fromDate = getDateWithoutTime(new Date());
 		// Set to first day of the month
 		fromDate.setDate(1);
 		fromDate.setMonth(fromDate.getMonth()-2);
@@ -54,8 +57,7 @@ function fillElementsForPeriod(fromDate, toDate)
 	}
 	if(!toDate)
 	{
-		toDate = new Date();
-		toDate = new Date(toDate.getFullYear()+'-'+toDate.getMonth()+'-'+toDate.getDate());
+		toDate = getDateWithoutTime(new Date());
 		// Set to first day of the month
 		toDate.setDate(1);
 		toDate.setMonth(toDate.getMonth()+4+1);
@@ -185,7 +187,7 @@ function fillElementsForPeriod(fromDate, toDate)
 			minWidth: timelineConfig.offsetForDate(timelineConfig.toDate) + timelineConfig.xStepPerBloc
 		});
 	}
-	displayTimelineAtDate(new Date(),false);
+	displayTimelineAtDate(getDateWithoutTime(),false);
 	// Calendar bookmark click
 	$('#calendar .month').click(function() {
 		// We get a string, we need a Date object.
@@ -233,7 +235,8 @@ function setupWorkDisplay() {
 	});
 }
 function Today() {
-	$('#today').css({ left: timelineConfig.offsetForDate(new Date())+$('#period').position().left });
+	var todayDate = getDateWithoutTime(new Date());
+	$('#today').css({ left: timelineConfig.offsetForDate(todayDate)+$('#period').position().left });
 }
 function convertOldFormatFromStartDate(startDate=null)
 {
