@@ -197,7 +197,9 @@ function fillElementsForPeriod(fromDate, toDate)
 			minWidth: timelineConfig.offsetForDate(timelineConfig.toDate) + timelineConfig.xStepPerBloc
 		});
 	}
-	displayTimelineAtDate(getDateWithoutTime(),false);
+	var firstDispayedDate = getDateWithoutTime();
+	firstDispayedDate.setDate(1);
+	displayTimelineAtDate(firstDispayedDate,false);
 	// Calendar bookmark click
 	$('#calendar .month').click(function() {
 		// We get a string, we need a Date object.
