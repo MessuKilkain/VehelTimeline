@@ -240,7 +240,15 @@ function setupWorkDisplay() {
 		// CREATE WORK
 		var el = $(this);
 		var startDate = el.attr('start-date');
-		var duration = el.attr('expected-duration');
+		var duration = el.attr('expected-duration')?el.attr('expected-duration'):null;
+		var endDate = el.attr('end-date')?el.attr('end-date'):null;
+		if( null != endDate )
+		{
+			duration = Math.ceil( timelineConfig.numberOfDaysBetweenDates(startDate,endDate) );
+		}
+		else if ( null == duration ) {
+			duration = Math.ceil( timelineConfig.numberOfDaysBetweenDates(startDate,timelineConfig.endDate) );
+		}
 		el.css({ width: duration * timelineConfig.xStepPerBloc, left: timelineConfig.offsetForDate(new Date(startDate)) });
 	});
 }
