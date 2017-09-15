@@ -208,7 +208,7 @@ function fillElementsForPeriod(fromDate, toDate)
 }
 function displayTimelineAtDate(dateToDisplayTimelineAt,animated=true)
 {
-	var offset = timelineConfig.offsetForDate(dateToDisplayTimelineAt);
+	var offset = timelineConfig.offsetForDate(dateToDisplayTimelineAt) + 1;
 	var timelineElementsToMove = $('#today, #period, .blocs, .work');
 	timelineElementsToMove.stop();
 	if(animated)
