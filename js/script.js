@@ -1,7 +1,7 @@
 // Constants
 // hours*minutes*seconds*milliseconds
 var OneDayLengthInMilliseconds = 24*60*60*1000.0;
-var MonthFrenchNameArray = [ 
+var MonthFrenchNameArray = [
 	"Janvier",
 	"Février",
 	"Mars",
@@ -39,11 +39,7 @@ var timelineConfig = {
 		return offset;
 	}
 };
-var ThisRel = 0;
-var ThisDuration = 0;
-var ThisTeamate = 0;
-var ThisProject = 0;
-var TodayIs = 13; var Size = 40;
+var Size = 40;
 function fillElementsForPeriod(fromDate, toDate)
 {
 	if(!fromDate)
@@ -97,7 +93,7 @@ function fillElementsForPeriod(fromDate, toDate)
 				calendarElement.append($('<div/>').addClass("month").text(MonthFrenchNameArray[d.getMonth()]).attr('date',d.toISOString()));
 				lastMonthDaysElement = null;
 				lastMonthDateElement = null;
-				
+
 				var newMonthElement = $('<div/>');
 				periodElement.append(newMonthElement);
 				newMonthElement.addClass('month').append("<div class='title'>"+MonthFrenchNameArray[d.getMonth()]+" "+d.getFullYear()+"</div>");
@@ -115,7 +111,7 @@ function fillElementsForPeriod(fromDate, toDate)
 				}
 				lastMonthString = currentMonthString;
 			}
-			
+
 			if(null != lastMonthDaysElement)
 			{
 				var parentElement = lastMonthDaysElement;
@@ -156,7 +152,7 @@ function fillElementsForPeriod(fromDate, toDate)
 					displayTimelineAtDate(new Date($(this).attr('date')));
 				});
 			}
-			
+
 			// if(null != lastMonthDaysElement)
 			// {
 				// var parentElement = lastMonthDaysElement;
@@ -213,14 +209,14 @@ function Blocs() {
 		$('.blocs').append('<div class="date"></div>');
 	});
 }
-function oldWorkFunction() {
+function oldWorkFunction(size=40) {
 	$('.work').each(function(){
 		// CREATE WORK
 		var This = $(this);
 		var TheMonth = This.attr('month');
 		var Duration = This.attr('duration');
 		var Start = This.attr('start');
-		This.css({ width: Size*Duration+(2*Duration), left: Size*(Start-1)+(2*(Start-1))+(TheMonth*Size+TheMonth*2) });
+		This.css({ width: size*Duration+(2*Duration), left: size*(Start-1)+(2*(Start-1))+(TheMonth*size+TheMonth*2) });
 	});
 }
 function setupWorkDisplay() {
@@ -258,7 +254,7 @@ $(document).ready(function() {
 	Blocs();
 	setupWorkDisplay();
 	Today();
-	
+
 	// DEBUG
 	{
 		var currentMonthDate = new Date();
@@ -294,7 +290,7 @@ $(document).ready(function() {
 
 	// CLICK FILTER PROJECT
 	$('#legend .filter_project').click(function() {
-		ThisProject = $(this).attr('rel');
+		var ThisProject = $(this).attr('rel');
 		$('.project').css({ display: 'none' });
 		$('.project.'+ThisProject).css({ display: 'block' });
 		$('.filter_project, .filter_project_all').removeClass('active');
@@ -307,7 +303,7 @@ $(document).ready(function() {
 	});
 	// CLICK FILTER PEOPLE
 	$('#legend .filter_people').click(function() {
-		ThisProject = $(this).attr('rel');
+		var ThisProject = $(this).attr('rel');
 		$('.user').css({ display: 'none' }); $('.user').parent().css({ display: 'none' });
 		$('.user.'+ThisProject).css({ display: 'block' }); $('.user.'+ThisProject).parent().css({ display: 'block' });
 		$('.filter_people, .filter_people_all').removeClass('active');
@@ -320,7 +316,7 @@ $(document).ready(function() {
 	});
 	// CLICK FILTER METIER
 	$('#legend .filter_metier').click(function() {
-		ThisProject = $(this).attr('rel');
+		var ThisProject = $(this).attr('rel');
 		$('.project .work').css({ display: 'none' });
 		$('.project .work.'+ThisProject).css({ display: 'block' });
 		$('.filter_metier, .filter_metier_all').removeClass('active');
@@ -334,10 +330,10 @@ $(document).ready(function() {
 
 	// HOVER ON WORK
 	$('.work').hover(function(event){
-		ThisRel = $(this).attr('rel');
-		ThisDuration = $(this).attr('duration');
+		var ThisRel = $(this).attr('rel');
+		var ThisDuration = $(this).attr('duration');
 		var NoLimit = $(this).attr('nolimit');
-		ThisTeamate = $(this).parent().parent().find('.name').text();
+		var ThisTeamate = $(this).parent().parent().find('.name').text();
 		$('.work').mousemove(function( event ) {
 			var Scroller = $(document).scrollTop();
 			$(this).parent().find('.description.'+ThisRel).css({ display: 'block', marginLeft: event.pageX+50, marginTop: event.pageY-Size-30-Scroller });
