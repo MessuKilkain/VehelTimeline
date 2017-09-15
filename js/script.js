@@ -29,14 +29,17 @@ var timelineConfig = {
 	fromDate: null,
 	toDate: null,
 	xStepPerBloc: 0,
-	offsetForDate: function(dateForExpectingOffset) {
+	offsetBetweenDates: function(date1,date2) {
 		var offset = 0;
-		if( null != this.fromDate && null != dateForExpectingOffset )
+		if( null != date1 && null != date2 )
 		{
-			offset = ( dateForExpectingOffset.getTime() - this.fromDate.getTime() )/OneDayLengthInMilliseconds;
+			offset = ( date2.getTime() - date1.getTime() )/OneDayLengthInMilliseconds;
 			offset = offset * this.xStepPerBloc;
 		}
 		return offset;
+	},
+	offsetForDate: function(dateForExpectingOffset) {
+		return this.offsetBetweenDates(this.fromDate,dateForExpectingOffset);
 	}
 };
 var ThisRel = null;
