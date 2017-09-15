@@ -334,7 +334,11 @@ $(document).ready(function() {
 	// HOVER ON WORK
 	$('.work').hover(function(event){
 		ThisRel = $(this).attr('rel');
-		var ThisDuration = $(this).attr('duration');
+		var ThisDuration = $(this).attr('expected-duration');
+		if( !ThisDuration )
+		{
+			ThisDuration = $(this).attr('duration');
+		}
 		var NoLimit = $(this).attr('nolimit');
 		var ThisTeamate = $(this).parent().parent().find('.name').text();
 		$('.work').mousemove(function( event ) {
