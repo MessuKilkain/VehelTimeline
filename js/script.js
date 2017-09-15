@@ -265,8 +265,14 @@ function convertOldFormatFromStartDate(startDate=null)
 		{
 			newStartDate = new Date(startDate);
 		}
-		newStartDate.setMonth(newStartDate.getMonth()+parseInt(el.attr('month')));
-		newStartDate.setDate(parseInt(el.attr('start')));
+		// console.log("Element : "+el);
+		// console.log("month : "+el.attr('month'));
+		// console.log("start : "+el.attr('start'));
+		// console.log("duration : "+el.attr('duration'));
+		// newStartDate.setMonth(newStartDate.getMonth()+parseInt(el.attr('month')));
+		// newStartDate.setDate(parseInt(el.attr('start')));
+		newStartDate.setDate(parseInt(el.attr('start'))+parseInt(el.attr('month')));
+		console.log("newStartDate : "+newStartDate.toISOString());
 		el.attr('start-date',newStartDate.toISOString());
 		el.attr('expected-duration',el.attr('duration'));
 	});
