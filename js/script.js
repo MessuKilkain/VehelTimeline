@@ -46,13 +46,16 @@ function fillElementsForPeriod(fromDate, toDate)
 	if(!fromDate)
 	{
 		fromDate = new Date();
+		fromDate = new Date(fromDate.getFullYear()+'-'+fromDate.getMonth()+'-'+fromDate.getDate());
 		// Set to first day of the month
 		fromDate.setDate(1);
 		fromDate.setMonth(fromDate.getMonth()-2);
+		fromDate.setDate(1);
 	}
 	if(!toDate)
 	{
 		toDate = new Date();
+		toDate = new Date(toDate.getFullYear()+'-'+toDate.getMonth()+'-'+toDate.getDate());
 		// Set to first day of the month
 		toDate.setDate(1);
 		toDate.setMonth(toDate.getMonth()+4+1);
