@@ -244,10 +244,10 @@ function setupWorkDisplay() {
 		var endDate = el.attr('end-date')?el.attr('end-date'):null;
 		if( null != endDate )
 		{
-			duration = Math.ceil( timelineConfig.numberOfDaysBetweenDates(startDate,endDate) );
+			duration = Math.ceil( timelineConfig.numberOfDaysBetweenDates(new Date(startDate),new Date(endDate)) );
 		}
 		else if ( null == duration ) {
-			duration = Math.ceil( timelineConfig.numberOfDaysBetweenDates(startDate,timelineConfig.endDate) );
+			duration = Math.ceil( timelineConfig.numberOfDaysBetweenDates(new Date(startDate),timelineConfig.toDate) );
 		}
 		el.css({ width: duration * timelineConfig.xStepPerBloc, left: timelineConfig.offsetForDate(new Date(startDate)) });
 	});
