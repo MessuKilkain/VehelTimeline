@@ -29,12 +29,19 @@ var timelineConfig = {
 	fromDate: null,
 	toDate: null,
 	xStepPerBloc: 0,
+	numberOfDaysBetweenDates: function(date1,date2) {
+		var numberOfDays = 0;
+		if( null != date1 && null != date2 )
+		{
+			numberOfDays = ( date2.getTime() - date1.getTime() )/OneDayLengthInMilliseconds;
+		}
+		return numberOfDays;
+	},
 	offsetBetweenDates: function(date1,date2) {
 		var offset = 0;
 		if( null != date1 && null != date2 )
 		{
-			offset = ( date2.getTime() - date1.getTime() )/OneDayLengthInMilliseconds;
-			offset = offset * this.xStepPerBloc;
+			offset = this.numberOfDaysBetweenDates(date1,date2) * this.xStepPerBloc;
 		}
 		return offset;
 	},
