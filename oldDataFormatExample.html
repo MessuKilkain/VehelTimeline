@@ -9,7 +9,17 @@
 <script src="js/jquery-latest.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
-
+<script type="text/javascript" src="js/oldDataFormatExample.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		// DEBUG
+		{
+			var currentMonthDate = new Date();
+			currentMonthDate = new Date(currentMonthDate.getFullYear()+'-'+(currentMonthDate.getMonth()+1)+'-01');
+			convertOldFormatFromStartDate(currentMonthDate);
+		}
+	});
+</script>
 </head>
 <body>
 
@@ -367,7 +377,7 @@
 		<div class="user resource_individu_2">
 			<div class="name developpeur">Individu 2</div>
 			<div class="work_container">
-				<div class="work developpeur" month="0" duration="8" start="6" rel="un">Update Application mobile</div>
+				<div class="work developpeur" month="30" duration="8" start="6" rel="un">Update Application mobile</div>
 				<div class="description un">
 					<div class="title">Application mobile<br/><span></span><br/><br/></div>
 					<div class="content">Mise à jour de l'application.</div>
@@ -382,7 +392,7 @@
 		<div class="user resource_individu_2">
 			<div class="name">Individu 2</div>
 			<div class="work_container">
-				<div class="work holidays" month="0" duration="18" start="23" rel="un">CP</div>
+				<div class="work holidays" month=61 duration="18" start="23" rel="un">CP</div>
 				<div class="description un">
 					<div class="title">Congés<br/><span></span><br/><br/></div>
 					<div class="content">18 jours, du 23 septembre au 10 octobre inclus.</div>
