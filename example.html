@@ -14,6 +14,7 @@
 	$(document).ready(function() {
 		// DEBUG
 		{
+			timeline.initialSetup();
 			var currentMonthDate = new Date();
 			currentMonthDate = new Date(currentMonthDate.getFullYear()+'-'+(currentMonthDate.getMonth()+1)+'-01');
 			timeline.old.convertOldFormatFromStartDate(currentMonthDate);

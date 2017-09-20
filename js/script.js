@@ -54,7 +54,7 @@ var timeline = {
 	dateWithoutTime: function(dateWithTime=new Date()) {
 		return new Date(dateWithTime.getFullYear()+'-'+(dateWithTime.getMonth()+1)+'-'+dateWithTime.getDate());;
 	},
-	fillElementsForPeriod: function(fromDate=null, toDate=null) {
+	buildElementsForPeriod: function(fromDate=this.config.fromDate, toDate=this.config.toDate) {
 		var timeline = this;
 		if(!fromDate)
 		{
@@ -320,42 +320,13 @@ var timeline = {
 		$(window).mousemove(function( event ) {
 			$('#cursor').css({ left: event.pageX });
 		});
+	},
+	initialSetup: function() {
+		var timeline = this;
+		timeline.buildElementsForPeriod();
+		timeline.buildBlocs();
+		timeline.displayWork();
+		timeline.displayToday();
+		timeline.setupEvents();
 	}
 };
-// Variables
-var Size = 40;
-
-$(document).ready(function() {
-	timeline.fillElementsForPeriod();
-	timeline.buildBlocs();
-	timeline.displayWork();
-	timeline.displayToday();
-	timeline.setupEvents();
-
-/*
-	// SMALL
-	$(window).keydown(function(e) {
-		// RIGHT ARROW
-		switch (e.keyCode) {
-		case 39:
-			$('body').addClass('small');
-			Size = 20;
-			fillElementsForPeriod();
-			Blocs();
-			setupWorkDisplay();
-			Today();
-		}
-		// LEFT ARROW
-		switch (e.keyCode) {
-		case 37:
-			$('body').removeClass('small');
-			Size = 40;
-			fillElementsForPeriod();
-			setupWorkDisplay();
-			Blocs();
-			Today();
-		}
-	});
-*/
-
-});
