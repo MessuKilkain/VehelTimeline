@@ -49,7 +49,6 @@ var timelineConfig = {
 		return this.offsetBetweenDates(this.fromDate,dateForExpectingOffset);
 	}
 };
-var ThisRel = null;
 var Size = 40;
 function getDateWithoutTime(dateWithTime=new Date())
 {
@@ -323,7 +322,7 @@ $(document).ready(function() {
 
 	// HOVER ON WORK
 	$('.work').hover(function(event){
-		ThisRel = $(this).attr('rel');
+		var ThisRel = $(this).attr('rel');
 		var ThisDuration = $(this).attr('expected-duration');
 		if( !ThisDuration )
 		{
@@ -341,6 +340,7 @@ $(document).ready(function() {
 			$(this).parent().find('.description.'+ThisRel).find('.title span').html(' [ '+ThisTeamate+', '+ThisDuration+' jour(s) ]');
 		}
 	}, function() {
+		var ThisRel = $(this).attr('rel');
 		$(this).parent().find('.description.'+ThisRel).css({ display: 'none' });
 	});
 
