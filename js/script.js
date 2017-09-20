@@ -207,14 +207,21 @@ var timeline = {
 		});
 	},
 	displayTimelineAtDate: function(dateToDisplayTimelineAt,animated=true) {
-		var offset = this.offsetForDate(dateToDisplayTimelineAt) + 1;
+		var timeline = this;
+		var offset = timeline.offsetForDate(dateToDisplayTimelineAt) + 1;
 		var timelineElementsToMove = $('#today, #period, .blocs, .work');
 		timelineElementsToMove.stop();
 		if(animated)
 		{
-			timelineElementsToMove.animate({ marginLeft: -offset });
+			timelineElementsToMove.animate({ marginLeft: -offset },{complete:function(){
+				if( $(this).hasClass("work") )
+				{
+					timeline.displayWorkElement(this);
+				}
+			}});
 		} else {
 			timelineElementsToMove.css({ marginLeft: -offset });
+			timeline.displayWork();
 		}
 	},
 	buildBlocs: function() {
@@ -224,22 +231,59 @@ var timeline = {
 			$('.blocs').append('<div class="date"></div>');
 		});
 	},
+	displayWorkElement: function(workElement) {
+		var timeline = this;
+		var el = $(workElement);
+		var startDate = el.attr('start-date');
+		var duration = el.attr('expected-duration')?el.attr('expected-duration'):null;
+		var endDate = el.attr('end-date')?el.attr('end-date'):null;
+		if( null != endDate )
+		{
+			duration = Math.ceil( timeline.numberOfDaysBetweenDates(new Date(startDate),new Date(endDate)) );
+		}
+		else if ( null == duration ) {
+			duration = Math.ceil( timeline.numberOfDaysBetweenDates(new Date(startDate),timeline.config.toDate) );
+		}
+		el.css({ width: duration * timeline.config.xStepPerBloc, left: timeline.offsetForDate(new Date(startDate)) });
+		{
+			el.css({ paddingLeft: 0, paddingRight: 0 });
+			var width = el.width();
+			var minWidth = 0;
+			var contents = el.contents();
+			var contentsIndex = 0;
+			for(contentsIndex = 0; contentsIndex < contents.length; contentsIndex++) {
+				minWidth += timeline.sizeOfTextNode(contents[0]).width;
+			}
+			var offset = el.offset();
+			offset.right = offset.left + width;
+			var paddingLeft = Math.max($('#period').position().left,offset.left)-offset.left;
+			var paddingRight = offset.right - Math.min($(window).width(),offset.right);
+			var iterationIndex = 0;
+			for( iterationIndex = 0 ; width < paddingLeft + minWidth + paddingRight && iterationIndex < 5 ; iterationIndex++ ) {
+				if( paddingLeft < paddingRight ) {
+					var minPaddingLeft = Math.min(paddingLeft,minWidth);
+					paddingLeft -= minPaddingLeft;
+				} else {
+					var minPaddingRight = Math.min(paddingRight,minWidth);
+					paddingRight -= minPaddingRight;
+				}
+			}
+			paddingLeft = Math.max(0,paddingLeft);
+			paddingRight = Math.max(0,paddingRight);
+			if( width < paddingLeft + minWidth + paddingRight ) {
+				paddingLeft = 0;
+				paddingRight = 0;
+			}
+			console.log("paddingLeft : "+paddingLeft);
+			console.log("paddingRight : "+paddingRight);
+			el.css({ paddingLeft: paddingLeft, paddingRight: paddingRight });
+		}
+	},
 	displayWork: function() {
+		console.log("displayWork called");
 		var timeline = this;
 		$('.work').each(function(){
-			// CREATE WORK
-			var el = $(this);
-			var startDate = el.attr('start-date');
-			var duration = el.attr('expected-duration')?el.attr('expected-duration'):null;
-			var endDate = el.attr('end-date')?el.attr('end-date'):null;
-			if( null != endDate )
-			{
-				duration = Math.ceil( timeline.numberOfDaysBetweenDates(new Date(startDate),new Date(endDate)) );
-			}
-			else if ( null == duration ) {
-				duration = Math.ceil( timeline.numberOfDaysBetweenDates(new Date(startDate),timeline.config.toDate) );
-			}
-			el.css({ width: duration * timeline.config.xStepPerBloc, left: timeline.offsetForDate(new Date(startDate)) });
+			timeline.displayWorkElement( this );
 		});
 	},
 	displayToday: function() {
@@ -319,6 +363,26 @@ var timeline = {
 		$(window).mousemove(function( event ) {
 			$('#cursor').css({ left: event.pageX });
 		});
+	},
+	sizeOfTextNode: function(textNode=null) {
+		var size = {
+			height:0,
+			width:0
+		};
+		if( textNode ) {
+			if (document.createRange) {
+					var range = document.createRange();
+					range.selectNodeContents(textNode);
+					if (range.getBoundingClientRect) {
+							var rect = range.getBoundingClientRect();
+							if (rect) {
+									size.height = rect.bottom - rect.top;
+									size.width = rect.right - rect.left;
+							}
+					}
+			}
+		}
+		return size;
 	},
 	initialSetup: function() {
 		var timeline = this;
