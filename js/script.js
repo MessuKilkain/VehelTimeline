@@ -1,4 +1,3 @@
-// Constants
 var timeline = {
 	constants:{
 		// hours*minutes*seconds*milliseconds
