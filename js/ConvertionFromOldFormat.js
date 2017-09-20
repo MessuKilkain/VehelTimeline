@@ -1,16 +1,20 @@
 
-function oldWorkFunction(size=40) {
+if( !timeline.old )
+{
+	timeline.old = {};
+}
+
+timeline.old.oldWorkFunction = function(size=40) {
 	$('.work').each(function(){
 		// CREATE WORK
-		var This = $(this);
-		var TheMonth = This.attr('month');
-		var Duration = This.attr('duration');
-		var Start = This.attr('start');
-		This.css({ width: size*Duration+(2*Duration), left: size*(Start-1)+(2*(Start-1))+(TheMonth*size+TheMonth*2) });
+		var thisElement = $(this);
+		var TheMonth = thisElement.attr('month');
+		var Duration = thisElement.attr('duration');
+		var Start = thisElement.attr('start');
+		thisElement.css({ width: size*Duration+(2*Duration), left: size*(Start-1)+(2*(Start-1))+(TheMonth*size+TheMonth*2) });
 	});
-}
-function convertOldFormatFromStartDate(startDate=null)
-{
+};
+timeline.old.convertOldFormatFromStartDate = function(startDate=null) {
 	$('.work').each(function(index,element){
 		var el = $(element);
 		var newStartDate = new Date('2017-09-01');
@@ -29,5 +33,4 @@ function convertOldFormatFromStartDate(startDate=null)
 		el.attr('start-date',newStartDate.toISOString());
 		el.attr('expected-duration',el.attr('duration'));
 	});
-	setupWorkDisplay();
-}
+};
