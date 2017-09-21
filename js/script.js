@@ -187,13 +187,17 @@ var timeline = {
 		}
 		{
 			var blocs = $("#period .bloc");
-			var elt0 = blocs[0];
-			var elt1 = blocs[1];
-			timeline.config.xStepPerBloc = $(elt1).position().left - $(elt0).position().left;
-			// console.log("timelineConfig.xStepPerBloc : "+timelineConfig.xStepPerBloc);
-			$('#period').css({
-				minWidth: timeline.offsetForDate(timeline.config.toDate) + timeline.config.xStepPerBloc
-			});
+			if( blocs ) {
+				var elt0 = blocs[0];
+				var elt1 = blocs[1];
+				if( elt0 && elt1 ) {
+					timeline.config.xStepPerBloc = $(elt1).position().left - $(elt0).position().left;
+					// console.log("timelineConfig.xStepPerBloc : "+timelineConfig.xStepPerBloc);
+					$('#period').css({
+						minWidth: timeline.offsetForDate(timeline.config.toDate) + timeline.config.xStepPerBloc
+					});
+				}
+			}
 		}
 		var firstDispayedDate = timeline.dateWithoutTime();
 		firstDispayedDate.setDate(1);
