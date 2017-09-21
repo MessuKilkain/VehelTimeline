@@ -16,7 +16,8 @@
 		{
 			timeline.initialSetup();
 			var currentMonthDate = new Date();
-			currentMonthDate = new Date(currentMonthDate.getFullYear()+'-'+(currentMonthDate.getMonth()+1)+'-01');
+			var monthValue = currentMonthDate.getMonth() + 1;
+			currentMonthDate = new Date(currentMonthDate.getFullYear()+'-'+(monthValue<10?('0'+monthValue):monthValue)+'-01');
 			timeline.old.convertOldFormatFromStartDate(currentMonthDate);
 			timeline.displayWork();
 		}

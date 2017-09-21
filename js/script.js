@@ -51,7 +51,10 @@ var timeline = {
 		return this.offsetBetweenDates(this.config.fromDate,dateForExpectingOffset);
 	},
 	dateWithoutTime: function(dateWithTime=new Date()) {
-		return new Date(dateWithTime.getFullYear()+'-'+(dateWithTime.getMonth()+1)+'-'+dateWithTime.getDate());;
+		var monthValue = dateWithTime.getMonth() + 1;
+		var dateValue = dateWithTime.getDate();
+		return new Date(dateWithTime.getFullYear()+'-'+(monthValue<10?('0'+monthValue):monthValue)+'-'+(dateValue<10?('0'+dateValue):dateValue));
+
 	},
 	buildElementsForPeriod: function(fromDate=this.config.fromDate, toDate=this.config.toDate) {
 		var timeline = this;
@@ -95,7 +98,8 @@ var timeline = {
 			for (var d = new Date(fromDate); d <= toDate; d.setDate(d.getDate() + 1))
 			{
 				var currentYear = d.getFullYear();
-				var currentMonthString = currentYear+'-'+(d.getMonth()+1);
+				var monthValue = d.getMonth() + 1;
+				var currentMonthString = currentYear+'-'+(monthValue<10?('0'+monthValue):monthValue);
 				// console.log("currentMonthString : "+currentMonthString);
 				if( currentYear != lastYear )
 				{
