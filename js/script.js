@@ -392,6 +392,22 @@ var timeline = {
 		}
 		return size;
 	},
+	jsonFromHtml: function(){
+		$(".project").each(function(){
+			var classes = $(this).attr("class").split(' ');
+
+			var iterationIndex = 0;
+			for( iterationIndex = 0 ; iterationIndex < classes.length ; iterationIndex++ ) {
+				var className = classes[iterationIndex];
+				if( "project" != className ) {
+					console.log("Project class : "+className);
+				}
+			}
+
+		});
+		// $(".psg").each(function(){ $(this).removeClass("psg").addClass("project_psg"); });
+		// $("[rel=psg]").each(function(){ $(this).attr("rel","project_psg"); });
+	},
 	initialSetup: function() {
 		var timeline = this;
 		timeline.buildElementsForPeriod();
