@@ -282,13 +282,13 @@ var timeline = {
 				paddingLeft = 0;
 				paddingRight = 0;
 			}
-			console.log("paddingLeft : "+paddingLeft);
-			console.log("paddingRight : "+paddingRight);
+			// console.log("paddingLeft : "+paddingLeft);
+			// console.log("paddingRight : "+paddingRight);
 			el.css({ paddingLeft: paddingLeft, paddingRight: paddingRight });
 		}
 	},
 	displayWork: function() {
-		console.log("displayWork called");
+		// console.log("displayWork called");
 		var timeline = this;
 		$('.work').each(function(){
 			timeline.displayWorkElement( this );
