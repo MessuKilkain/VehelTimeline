@@ -394,7 +394,8 @@ var timeline = {
 	},
 	jsonFromHtml: function(){
 		$(".project").each(function(){
-			var classes = $(this).attr("class").split(' ');
+			var projectElement = $(this);
+			var classes = projectElement.attr("class").split(' ');
 
 			var iterationIndex = 0;
 			for( iterationIndex = 0 ; iterationIndex < classes.length ; iterationIndex++ ) {
@@ -403,6 +404,18 @@ var timeline = {
 					console.log("Project class : "+className);
 				}
 			}
+			var title = projectElement.children('.title').text();
+			console.log("Title : "+title);
+			projectElement.children('.user').each(function(){
+				var userName = $(this).find('.name').text();
+				console.log("User name : "+userName);
+				$(this).find('.work_container .work').each(function(){
+					var workElement = $(this);
+					console.log("Work element text : "+workElement.text());
+					var descriptionElement = $(this).parent().find('.'+$(this).attr('rel'));
+					console.log("Description element text : "+descriptionElement.text());
+				});
+			});
 
 		});
 		// $(".psg").each(function(){ $(this).removeClass("psg").addClass("project_psg"); });
